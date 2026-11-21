@@ -10,13 +10,13 @@ jobs:
       
       - name: Unzip the project
         run: |
-          unzip SavedKeyboard-full.zip -d .
+          unzip -o SavedKeyboard-full.zip -d .
           rm SavedKeyboard-full.zip
           
       - name: Commit and Push Files
         run: |
           git config --global user.name "GitHub Action"
           git config --global user.email "action@github.com"
-          git add .
-          git commit -m "Auto-unzip project files"
+          git add . -f
+          git commit -m "Auto-unzip project files" || echo "No changes to commit"
           git push
